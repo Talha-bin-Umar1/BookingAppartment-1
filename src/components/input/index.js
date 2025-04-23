@@ -26,25 +26,12 @@ const Input = ({
   height,
   tintcolor,
   marginBottom,
-  onBlur,
-  elevation,
-  onFocus,
-  focused,
-  blurred,
-  focusview,
-  placeholderTextColor
+  placeholderTextColor,
 }) => {
   const [show, setShow] = useState(false);
-  const [isfocused, setIsfocused] = useState(false);
-  console.log('focused', focused);
-  console.log('blurred', blurred);
 
   return (
-    <View
-      style={[
-        styles.mainContainer,
-        isfocused && focusview && styles.mainContainer2,
-      ]}>
+    <View style={[styles.mainContainer]}>
       {leftIcon && (
         <Image
           source={img}
@@ -65,31 +52,27 @@ const Input = ({
         style={styles.inputStyle}
         onChangeText={onChangeText}
         placeholderTextColor={placeholderTextColor}
-        // onBlur={() => setIsfocused(false)}
-        // onFocus={() => setIsfocused(true)}
       />
       {secureTextEntry &&
         (show ? (
           <TouchableOpacity
-          // onPress={() => {
-          // setShow(!show);
-          // }}
-          >
+            onPress={() => {
+              setShow(!show);
+            }}>
             <Image
-              tintColor={'grey'}
+              tintColor={'#C62300'}
               source={Images.eyeClose}
               style={[styles.eyeIconStyle, {width: 23, height: 23}]}
             />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
-          // onPress={() => {
-          // setShow(!show);
-          // }}
-          >
+            onPress={() => {
+              setShow(!show);
+            }}>
             <Image
-              tintColor={'grey'}
-              source={Images.eyeClose}
+              tintColor={'#C62300'}
+              source={Images.eye}
               style={[styles.eyeIconStyle, {width: 25, height: 25}]}
               resizeMode="contain"
             />
@@ -130,7 +113,7 @@ const styles = StyleSheet.create({
         shadowColor: 'black',
       },
       android: {
-        elevation: 0, // No shadow initially on Android
+        elevation: 0,
       },
     }),
   },
@@ -145,13 +128,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     ...Platform.select({
       ios: {
-        shadowOffset: {width: 0, height: 4}, // Shadow offset outside
-        shadowOpacity: 0.3, // Slightly transparent shadow
-        shadowRadius: 8, // Blurred shadow effect
+        shadowOffset: {width: 0, height: 4},
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
         shadowColor: 'black',
       },
       android: {
-        elevation: 10, // Shadow with elevation on Android, giving it an "outside" effect
+        elevation: 10,
       },
     }),
     borderWidth: 1,

@@ -1,21 +1,17 @@
+/* eslint-disable react-native/no-inline-styles */
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Images from '../../assets';
 
 const UserOrDealer = ({navigation}) => {
   return (
-    <View
-      style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <TouchableOpacity
         onPress={() => {
-          console.log('Button Pressed');
           navigation.navigate('AuthStack', {
             screen: 'SignUp',
             params: {
-              userType: 'Client',
+              userType: 'client',
             },
           });
         }}
@@ -24,7 +20,6 @@ const UserOrDealer = ({navigation}) => {
           width: '95%',
           borderRadius: 10,
           backgroundColor: '#fff',
-          marginTop: '25%',
           justifyContent: 'center',
           alignItems: 'center',
           elevation: 5,
@@ -51,7 +46,7 @@ const UserOrDealer = ({navigation}) => {
           navigation.navigate('AuthStack', {
             screen: 'SignUp',
             params: {
-              userType: 'Dealer',
+              userType: 'dealer',
             },
           });
         }}
@@ -62,13 +57,7 @@ const UserOrDealer = ({navigation}) => {
           backgroundColor: '#fff',
           marginTop: '5%',
           justifyContent: 'center',
-          alignContent: 'center',
           alignItems: 'center',
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 2},
-          shadowOpacity: 0.6,
-          shadowRadius: 4,
-          // Shadow for Android
           elevation: 5,
         }}>
         <Text

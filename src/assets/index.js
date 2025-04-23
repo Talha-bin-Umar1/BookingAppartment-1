@@ -20,5 +20,6 @@ const Images = {
   appartment9: require('../assets/images/appartment9.jpg'),
   appartment10: require('../assets/images/appartment10.jpeg'),
   searchIcon: require('../assets/images/searchIcon2.png'),
+  eye: require('../assets/images/eye.png'),
 };
 export default Images;

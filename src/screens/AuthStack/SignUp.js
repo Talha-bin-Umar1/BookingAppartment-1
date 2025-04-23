@@ -2,7 +2,6 @@ import {View, Text, StyleSheet, Alert} from 'react-native';
 import React, {useState} from 'react';
 import {useRoute} from '@react-navigation/native';
 import CustomButton from '../../components/customButton';
-import OrSeprator from '../../components/orSeprator';
 import Header from '../../components/header';
 import HeaderDown from '../../components/headerDown';
 import {Input} from '../../components/input';
@@ -17,7 +16,7 @@ const SignUp = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const route = useRoute();
-  const userType = route.params.userType || '';
+  const userType = route.params?.userType || 'client';
 
   const handleSignUp = async () => {
     if (!username || !email || !password || !confirmPassword || !phoneNumber) {
@@ -31,11 +30,12 @@ const SignUp = ({navigation}) => {
     }
 
     try {
-      // Firebase Auth
-      const userCredential = await auth().createUserWithEmailAndPassword(email, password);
-      const { uid } = userCredential.user;
+      const userCredential = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      );
+      const {uid} = userCredential.user;
 
-      // Save extra user data in Firestore
       await firestore().collection('users').doc(uid).set({
         name: username,
         email,
@@ -44,7 +44,7 @@ const SignUp = ({navigation}) => {
       });
 
       Alert.alert('Success', 'Account created successfully!');
-      navigation.navigate('Login'); // Or wherever you want to redirect
+      navigation.navigate('LogIn');
     } catch (error) {
       console.error(error);
       Alert.alert('Signup Error', error.message);
@@ -52,7 +52,9 @@ const SignUp = ({navigation}) => {
   };
 
   return (
-    <View style={{flex: 1, alignItems: 'center'}}>
+    <View style={{flex: 1,
+     alignItems: 'center'
+     }}>
       <Header onboarding={'signup'} />
       <View
         style={{
@@ -67,9 +69,7 @@ const SignUp = ({navigation}) => {
           placeholder={'Name'}
           value={username}
           marginBottom={15}
-          focusview={true}
           onChangeText={setUsername}
-          secureTextEntry={false}
         />
         <Input
           leftIcon={true}
@@ -77,9 +77,7 @@ const SignUp = ({navigation}) => {
           img={Images.icon2}
           value={email}
           marginBottom={15}
-          focusview={true}
           onChangeText={setEmail}
-          secureTextEntry={false}
         />
         <Input
           leftIcon={true}
@@ -87,9 +85,7 @@ const SignUp = ({navigation}) => {
           img={Images.phoneIcon1}
           value={phoneNumber}
           marginBottom={15}
-          focusview={true}
           onChangeText={setPhoneNumber}
-          secureTextEntry={false}
         />
         <Input
           leftIcon={true}
@@ -97,7 +93,6 @@ const SignUp = ({navigation}) => {
           placeholder={'Password'}
           img={Images.icon3}
           value={password}
-          focusview={true}
           marginBottom={15}
           onChangeText={setPassword}
         />
@@ -106,7 +101,6 @@ const SignUp = ({navigation}) => {
           secureTextEntry={true}
           placeholder={'Confirm Password'}
           marginBottom={15}
-          focusview={true}
           img={Images.icon3}
           value={confirmPassword}
           onChangeText={setConfirmPassword}
@@ -130,17 +124,6 @@ const SignUp = ({navigation}) => {
         justi={'center'}
         btnColor={'#C62300'}
         onPress={handleSignUp}
-      />
-      <CustomButton
-        text={'Sign Up with Google'}
-        txtColor={'#C62300'}
-        borderColor={'#C62300'}
-        justi={'center'}
-        showImage={true}
-        btnColor={'#fff'}
-        imgPath={Images.googleIcon}
-        borderWidth={true}
-        // You can implement Google Sign-In here
       />
     </View>
   );
