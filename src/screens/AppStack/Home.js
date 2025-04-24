@@ -14,9 +14,7 @@ import Images from '../../assets';
 import {Input} from '../../components/input';
 import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useRoute} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 
 const Home = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,7 +25,6 @@ const Home = ({route, navigation}) => {
   const [editedRooms, setEditedRooms] = useState('');
   const [editedPrice, setEditedPrice] = useState('');
   const [loading, setLoading] = useState(true);
-
 
   const [imageModalVisible, setImageModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -47,10 +44,9 @@ const Home = ({route, navigation}) => {
         setLoading(false);
       }
     };
-  
+
     loadUserData();
   }, []);
-  
 
   const [data, setData] = useState([
     {
@@ -167,24 +163,23 @@ const Home = ({route, navigation}) => {
   );
 
   // const handleLogout = () => {
-    const handleLogout = async () => {
-      await AsyncStorage.removeItem('userData');
-      await auth().signOut();
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'AuthStack', params: { screen: 'LogIn' } }],
-      });
-    };
-    
-    if (loading) {
-      return (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <Text>Loading...</Text>
-        </View>
-      );
-    }
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem('userData');
+    await auth().signOut();
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'AuthStack', params: {screen: 'LogIn'}}],
+    });
+  };
+
+  if (loading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
   return (
-    
     <View style={{flex: 1, justifyContent: 'center'}}>
       <View
         style={{
@@ -237,7 +232,6 @@ const Home = ({route, navigation}) => {
         style={{
           justifyContent: 'center',
           alignItems: 'flex-end',
-          // backgroundColor: 'blue',
           marginBottom: '2%',
           height: 50,
         }}>
@@ -245,7 +239,6 @@ const Home = ({route, navigation}) => {
           onPress={handleLogout}
           style={{
             justifyContent: 'center',
-            // marginTop:'10%',
             fontSize: 15,
             color: 'red',
             fontWeight: '500',
@@ -298,17 +291,20 @@ const Home = ({route, navigation}) => {
       <Modal
         animationType="fade"
         transparent={true}
-        visible={imageModalVisible}>
+        visible={imageModalVisible}
+        onRequestClose={() => setImageModalVisible(false)}>
         <View style={styles.modalOverlay}>
-          <TouchableOpacity
-            style={styles.fullImageWrapper}
-            onPress={() => setImageModalVisible(false)}>
-            <Image
-              source={selectedImage}
-              style={styles.fullImage}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
+          <View style={styles.fullImageWrapper}>
+            <TouchableOpacity
+              style={{flex: 1, width: '100%'}}
+              onPress={() => setImageModalVisible(false)}>
+              <Image
+                source={selectedImage}
+                style={styles.fullImage}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </Modal>
     </View>
@@ -321,6 +317,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     borderRadius: 10,
     overflow: 'hidden',
+    elevation: 10,
   },
   imageWrapper: {
     position: 'relative',
@@ -365,16 +362,45 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   fullImageWrapper: {
-    flex: 1,
     width: '100%',
+    height: '80%',
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'rgba(0,0,0,0.4)',
   },
   fullImage: {
     width: '100%',
-    height: '80%',
-    // backgroundColor: 'red',
+    height: '100%',
+  },
+  fullImageContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.9)',
+    padding: 20,
+  },
+  imageDetails: {
+    marginTop: 10,
+    backgroundColor: 'rgba(255,255,255,0.95)',
+    borderRadius: 10,
+    padding: 12,
+    marginHorizontal: 20,
+    alignItems: 'center',
+  },
+  detailText: {
+    fontSize: 16,
+    color: '#000',
+    marginVertical: 2,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    zIndex: 10,
+  },
+  closeButtonText: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 

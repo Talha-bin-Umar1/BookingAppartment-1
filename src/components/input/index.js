@@ -21,12 +21,8 @@ const Input = ({
   onChangeText,
   imgBorderRadius,
   secureTextEntry,
-  marginHorizontal,
   marginLeftImg2,
-  height,
   tintcolor,
-  marginBottom,
-  placeholderTextColor,
 }) => {
   const [show, setShow] = useState(false);
 
@@ -51,7 +47,7 @@ const Input = ({
         placeholder={placeholder}
         style={styles.inputStyle}
         onChangeText={onChangeText}
-        placeholderTextColor={placeholderTextColor}
+        placeholderTextColor="#999"
       />
       {secureTextEntry &&
         (show ? (
@@ -105,17 +101,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     height: 50,
     backgroundColor: 'white',
-    ...Platform.select({
-      ios: {
-        shadowOffset: {width: 0, height: 0},
-        shadowOpacity: 0,
-        shadowRadius: 0,
-        shadowColor: 'black',
-      },
-      android: {
-        elevation: 0,
-      },
-    }),
+    elevation: 0,
   },
   mainContainer2: {
     width: '95%',
@@ -126,17 +112,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
     backgroundColor: 'white',
-    ...Platform.select({
-      ios: {
-        shadowOffset: {width: 0, height: 4},
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        shadowColor: 'black',
-      },
-      android: {
-        elevation: 10,
-      },
-    }),
+    elevation: 10,
     borderWidth: 1,
     borderColor: '#C62300',
   },
@@ -146,7 +122,6 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   inputStyle: {
-    // height: 40,
     padding: 0,
     width: '78%',
     marginLeft: 10,

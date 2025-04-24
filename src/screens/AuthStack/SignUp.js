@@ -1,9 +1,9 @@
-import {View, Text, StyleSheet, Alert} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import {View, Text, Alert} from 'react-native';
 import React, {useState} from 'react';
 import {useRoute} from '@react-navigation/native';
 import CustomButton from '../../components/customButton';
 import Header from '../../components/header';
-import HeaderDown from '../../components/headerDown';
 import {Input} from '../../components/input';
 import Images from '../../assets';
 import auth from '@react-native-firebase/auth';
@@ -53,7 +53,7 @@ const SignUp = ({navigation}) => {
 
   return (
     <View style={{flex: 1,
-     alignItems: 'center'
+     alignItems: 'center',
      }}>
       <Header onboarding={'signup'} />
       <View

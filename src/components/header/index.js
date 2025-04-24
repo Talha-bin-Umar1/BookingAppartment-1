@@ -1,59 +1,17 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const OnboardingText = ({onboarding, splash}) => {
-  const getTitle = () => {
-    switch (onboarding) {
-      case 'onboard':
-        return [
-          'Get Started with \nThe Cutting Hub',
-          'Book Your Favourite \nServices',
-          'Stay Relax and \nEntertained',
-          'Never Miss an \nAppointment',
-        ][splash];
-      case 'login':
-        return 'Welcome back,';
-      case 'signup':
-        return 'Create an account,';
-      default:
-        return 'Default Text for unknown onboarding';
-    }
-  };
-
-  const getSubtitle = () => {
-    switch (onboarding) {
-      case 'onboard':
-        return [
-          'The Ultimate Salon Booking \nExperience.',
-          "From haircuts to facials, we've got you \ncovered",
-          'Games, news, and more while you \nwait.',
-          'Get appointment reminders and \nupdates in real-time.',
-        ][splash];
-      case 'login':
-        return 'Glad to meet you again!, please login to use the app.';
-      case 'signup':
-        return 'Please type full information bellow and we can create your account';
-      default:
-        return 'Default Text for unknown onboarding';
-    }
-  };
-
+const Header = () => {
   return (
     <View style={styles.container}>
-      <Text
-        style={[
-          styles.title,
-          {color: onboarding === 'onboard' ? 'white' : '#000'},
-        ]}>
-        {getTitle()}
-      </Text>
+      <Text style={[styles.title]}>Create an account,</Text>
       <View style={styles.subtitleContainer}>
         <Text
           style={{
-            fontSize: onboarding === 'onboard' ? 20 : 15,
-            color: onboarding === 'onboard' ? 'white' : '#000',
+            fontSize: 15,
+            color: '#000',
           }}>
-          {getSubtitle()}
+          Please type full information bellow and we can create your account
         </Text>
       </View>
     </View>
@@ -68,10 +26,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 33,
     fontWeight: 'bold',
+    color: '#000',
   },
   subtitleContainer: {
     marginTop: '5%',
   },
 });
 
-export default OnboardingText;
+export default Header;

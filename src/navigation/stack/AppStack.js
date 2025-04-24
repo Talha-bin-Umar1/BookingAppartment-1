@@ -11,8 +11,6 @@ const AppStack = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="Home" component={Home} />
-      {/* <Stack.Screen name="SignUp" component={SignUp} /> */}
-      {/* <Stack.Screen name="UserOrDealer" component={UserOrDealer} /> */}
     </Stack.Navigator>
   );
 };

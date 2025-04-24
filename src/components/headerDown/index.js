@@ -1,22 +1,12 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
-const AuthSwitch = ({value, press}) => {
-  const getPromptText = () => {
-    return value === 'login'
-      ? 'Don’t have an account?'
-      : 'Already have an account?';
-  };
-
-  const getSwitchButtonText = () => {
-    return value === 'login' ? 'Join Now' : 'Sign In';
-  };
-
+const HeaderDown = ({press}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.promptText}>{getPromptText()}</Text>
+      <Text style={styles.promptText}>Don’t have an account?</Text>
       <TouchableOpacity onPress={press}>
-        <Text style={styles.switchButtonText}>{getSwitchButtonText()}</Text>
+        <Text style={styles.switchButtonText}>Join Now</Text>
       </TouchableOpacity>
     </View>
   );
@@ -41,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AuthSwitch;
+export default HeaderDown;

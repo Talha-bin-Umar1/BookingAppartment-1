@@ -91,7 +91,7 @@ const LogIn = ({navigation}) => {
 
   return (
     <View style={{flex: 1,
-     alignItems: 'center'
+     alignItems: 'center',
      }}>
       <View
         style={{
@@ -135,7 +135,6 @@ const LogIn = ({navigation}) => {
           placeholder={'Password'}
           value={password}
           onChangeText={setPassword}
-          // onChangeText={text => setPassword(text)}
         />
       </View>
 

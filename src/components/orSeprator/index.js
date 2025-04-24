@@ -1,20 +1,11 @@
-import {View, Text, Image} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import {View, Text, Image, StyleSheet} from 'react-native';
 import React from 'react';
 import Images from '../../assets';
 
 const index = () => {
   return (
-    <View
-      style={{
-        alignContent: 'space-between',
-        flexDirection: 'row',
-        //   backgroundColor: 'red',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        alignSelf: 'center',
-        width: '80%',
-        // marginVertical: 30,
-      }}>
+    <View style={styles.container1}>
       <Image
         source={Images.lineIcon1}
         style={{
@@ -39,5 +30,14 @@ const index = () => {
     </View>
   );
 };
-
+const styles = StyleSheet.create({
+  container1: {
+    alignContent: 'space-between',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: '80%',
+  },
+});
 export default index;
